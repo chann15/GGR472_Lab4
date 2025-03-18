@@ -11,6 +11,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css' rel='stylesheet' />
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <!-- Turf.js -->
     <script src='https://unpkg.com/@turf/turf@7.2.0/turf.min.js'></script>
 </head>
@@ -19,6 +20,18 @@
 
     <!-- MAP CONTAINER -->
     <div id='map' class='map'></div>
+
+    <div class = 'title'>
+        <h2>Collision Counts in Toronto</h2>
+    </div>
+
+    <div id="legend">
+        <h4>Collision Count</h4>
+        <div><span style="background-color: #f7f7f7; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>1–9</div>
+        <div><span style="background-color: #ffcccc; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>10–49</div>
+        <div><span style="background-color: #ff6666; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>50–71</div>
+        <div><span style="background-color: #ff0000; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>72+</div>
+    </div>
 
     <script src="script.js"></script>
 

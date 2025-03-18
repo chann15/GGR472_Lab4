@@ -6,3 +6,36 @@
     right: 0;
     width: 100%;
 }
+.title {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    top: 0;
+    right: 0;
+    margin: 5px 10px 30px 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    max-width: 400px; /* Reduced width for a snug fit */
+    padding: 5px 10px; /* Reduced padding for tighter spacing */
+}
+
+
+#legend {
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    z-index: 1;
+}
+
+#legend h4 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
