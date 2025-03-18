@@ -6,7 +6,7 @@ GGR472 LAB 4: Incorporating GIS Analysis into web maps using Turf.js
 Step 1: INITIALIZE MAP
 --------------------------------------------------------------------*/
 // Define access token
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbm5pNDIiLCJhIjoiY201cjdmdmJxMDdodTJycHc2a3ExMnVqaiJ9.qKDYRE5K3C9f05Cj_JNbWA'; // Add default public map token from your Mapbox account
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbm5pNDIiLCJhIjoiY201cjdmdmJxMDdodTJycHc2a3ExMnVqaiJ9.qKDYRE5K3C9f05Cj_JNbWA';
 
 // Initialize map and edit to your preference
 const map = new mapboxgl.Map({
@@ -24,7 +24,7 @@ Step 2: VIEW GEOJSON POINT DATA ON MAP
 //      Use the fetch method to access the GeoJSON from your online repository
 //      Convert the response to JSON format and then store the response in your new variable
 
-
+// Calls the data from the url link
 let collisionData;
 fetch('https://raw.githubusercontent.com/smith-lg/ggr472-lab4/refs/heads/main/data/pedcyc_collision_06-21.geojson')
   .then(response => response.json())
@@ -42,6 +42,8 @@ fetch('https://raw.githubusercontent.com/smith-lg/ggr472-lab4/refs/heads/main/da
 //      Use bounding box coordinates as argument in the turf hexgrid function
 //      **Option: You may want to consider how to increase the size of your bbox to enable greater geog coverage of your hexgrid
 //                Consider return types from different turf functions and required argument types carefully here
+
+//calls the data from the url link while also loads the map
 map.on('load', () => {
     let bboxresult = turf.bbox(collisionData); // Create bounding box around collision data
     let hexdata = turf.hexGrid(bboxresult, 0.5, {units: 'kilometers'}); // Create hexgrid using bounding box
@@ -55,7 +57,8 @@ Step 4: AGGREGATE COLLISIONS BY HEXGRID
 //HINT: Use Turf collect function to collect all '_id' properties from the collision points data for each heaxagon
 //      View the collect output in the console. Where there are no intersecting points in polygons, arrays will be empty
 
-let collishex = turf.collect(hexdata, collisionData, '_id', 'values'); // Aggregate collisions by hexgrid
+// Aggregate collisions by hexgrid
+let collishex = turf.collect(hexdata, collisionData, '_id', 'values'); 
 let maxcollisions = 0;
 
 collishex.features.forEach((feature) => {
@@ -68,6 +71,8 @@ collishex.features.forEach((feature) => {
 // /*--------------------------------------------------------------------
 // Step 5: FINALIZE YOUR WEB MAP
 // --------------------------------------------------------------------*/
+
+//add the sources and layers to the map, and set the paint properties
 map.addSource('hexgrid', {
     'type': 'geojson',
     'data': collishex
@@ -95,7 +100,7 @@ map.addLayer({
 });
 
 
-
+//allows the map to be interactable
 map.on('click', 'hexgrid', (e) => {
     let popup = new mapboxgl.Popup()
         .setLngLat(e.lngLat)
